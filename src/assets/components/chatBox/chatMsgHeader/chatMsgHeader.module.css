@@ -1,0 +1,35 @@
+.container{
+    width:925px;
+    align-items: center;
+}
+.header{
+    background-color: #F0F2F5; 
+    display: flex;
+    align-items:center;
+    justify-content:space-between; 
+    height:62px; 
+    width:940px;
+}
+.icons{
+    display: flex;
+    align-items: center;
+    height: 42px;
+    /* width:170px;  */ 
+    margin-right:10px;
+    gap:20px;
+}
+.details{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap:20px ;
+    width:500px;
+}
+.details img{
+    height:40px;
+    width:40px; 
+    margin-left:30px;
+}
+.details p{
+    color:#112243;
+}

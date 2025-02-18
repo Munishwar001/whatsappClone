@@ -1,0 +1,21 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+.components{
+    /* display: flex;  */
+    /* padding: 0; */
+    width:600px;
+}
+.container{
+    display: flex;
+    width: 400px;
+}
+.chatWindowStruct{
+    padding: 0%;
+    /* border: 1px solid black; */
+    /* width:400px; */
+    /* width:3000px; */
+    /* background-color: red; */
+
+}

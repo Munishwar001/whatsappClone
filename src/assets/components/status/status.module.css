@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFFFFF;
+    margin: 0%;
+    padding: 0%;
+}
+.heading{
+    margin-left:10px;
+    /* background-color: red; */
+    width:300px;
+}
+.headingContainer{
+    display: flex; 
+    justify-content: space-between;
+}
+.myStatus{
+    display: flex;
+    align-items: center;
+    padding: 0%; 
+    gap:20px;
+} 
+.statusPic{
+    margin-left: 10px;
+    height:40px;
+    width:40px;  
+    border:3px solid #00A884;
+}
+.myStatus span ,p{
+    padding: 0%;
+}
+.myStatusText p{
+ margin: 0%;
+
+}
+.myStatusTextP1 {
+    font-weight: 200;
+    font-size:16px;
+}
+.space{
+ background-color:#F0F2F5;
+height:16px;
+margin-top:10px;
+}

@@ -1,0 +1,77 @@
+.container {
+    height: 100vh;
+    width: 925px; 
+    position: fixed;
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    padding: 0%;
+    gap: 0%;
+}
+
+.msgBox {
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 935px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    height: 520px;
+    overflow-y: auto;
+}
+
+.sendBox {
+    height: 62px;
+    width: 940px;
+    background-color: #F0F2F5;
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 50px;
+    /* background-color: red; */
+}
+
+.typemsg {
+    height: 22.05px;
+    width: 700px;
+    /* background-color: red; */
+    border: none;
+    outline: none;
+
+}
+
+.msg {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.myMessage {
+    background-color: #d9fdd3;
+    /* Light green (WhatsApp-like) */
+    color: black;
+    align-self: flex-end;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 60%;
+    word-wrap: break-word;
+    margin: 5px 10px;
+    margin-right:20px;
+    /* background-color: red; */
+}
+
+.otherMessage {
+    background-color: #E5E5EA;
+    /* Light gray */
+    color: black;
+    align-self: flex-start;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 60%;
+    word-wrap: break-word;
+    margin: 5px 10px;
+}

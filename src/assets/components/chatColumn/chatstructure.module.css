@@ -1,0 +1,19 @@
+body {
+    height: 100vh;
+    background-color: #FFFFFF;
+    border-right: 1px solid #F0F2F5;
+}
+.chats {
+    background-color:#FFFFFF;
+    overflow-y: auto;
+    width: 400px;
+    height:76vh;
+    margin: 0%;
+}
+
+.joiner {
+    padding: 0%;
+    margin-left:60px;
+    width:400px;
+    height:100vh;
+}
