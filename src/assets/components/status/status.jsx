@@ -1,5 +1,13 @@
-import styles from './status.module.css';
-export default function Status() {
+import styles from './status.module.css'; 
+import StatusPerson from './statusPerson/statusPerson';
+export default function Status() { 
+    const chatData = [
+        { name: "Alice", pic: "https://randomuser.me/api/portraits/women/1.jpg" },
+        { name: "Bob", pic: "https://randomuser.me/api/portraits/men/2.jpg" },
+        { name: "Charlie", pic: "https://randomuser.me/api/portraits/men/3.jpg" },
+        { name: "David", pic: "https://randomuser.me/api/portraits/men/4.jpg" }
+    ];
+
     return (
         <div className={styles.container}>
             <nav>
@@ -17,8 +25,10 @@ export default function Status() {
                 </div> 
                 <div className={styles.space}></div>
             </nav>
-            <div>
-                
+            <div style={{ overflowY: "auto" }}>
+                {chatData.map((chat, index) => (
+                    <StatusPerson key={index} name={chat.name} pic={chat.pic} />
+                ))}
             </div>
         </div>
     )

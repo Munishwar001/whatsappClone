@@ -1,0 +1,27 @@
+.container{
+    height:100px; 
+    /* background-color: blue;  */
+    display: flex;
+    align-items: center; 
+    /* background-color: blue; */
+    gap:10px; 
+
+    border-bottom: 2px solid #f0f2f5;
+}
+.name{
+    margin:0px 0px 5px 10px; 
+
+}
+.otherStatusTime {
+    margin: 0px 0px 0px 10px;
+   color: #605775;
+}
+.container img{
+    height:40px;
+    width:40px;
+    margin-left:10px; 
+    border:3px solid #017561;
+} 
+.container:hover{
+    background-color: #F0F2F5;
+}

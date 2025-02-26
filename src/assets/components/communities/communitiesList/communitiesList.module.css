@@ -1,0 +1,30 @@
+.container{
+    margin: 0%;
+ width:400px;
+}
+.components{
+    display: flex;
+    border-bottom:1px solid gray;
+    align-items: center;
+    gap:5px;
+}
+.components img{
+    height: 40px;
+    width:40px;
+    border:2px solid black;
+    margin-left: 10px;
+}
+.content pre{
+    width:100px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0%;
+    padding: 0%;
+    color: gray;
+    margin-top:5px;
+}
+.content h3{
+    margin: 0%;
+    padding: 0%;
+    margin-bottom:5px;
+}

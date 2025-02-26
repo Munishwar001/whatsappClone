@@ -1,0 +1,48 @@
+.heading {
+    margin-left: 10px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header span {
+    padding-right: 20px;
+}
+
+.channelsearch {
+    display: flex;
+    align-items: center;
+    background-color: #F0F2F5;
+    margin: 0%;
+    padding: 0%;
+    height: 35px;
+    width: 380px;
+    margin-left: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.channelsearch svg {
+    margin: 0%;
+}
+
+.channelsearch input {
+    width: 335px;
+    height: 30px;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    background-color: #F0F2F5;
+
+}
+
+.channelContainer {
+    height: 85vh;
+    position: fixed;
+}
+.container{
+    position: fixed;
+}

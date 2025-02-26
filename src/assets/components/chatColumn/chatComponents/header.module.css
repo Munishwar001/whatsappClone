@@ -79,3 +79,32 @@ body {
 .filterBtn:hover{
  background-color: #F0F2F5;
 }
+.dashBoard{
+    height:258px;
+    width:255px;
+    position: absolute;
+    top:55px;
+    left: 190px; 
+    background-color: #FFFFFF;
+    box-shadow: #54656F 0px 3px 8px;
+    color: #54656F ;
+}
+.dashBoardList{
+    list-style: none;
+    padding: 5px; 
+    margin-top: 0%;
+}
+.dashBoardList li{
+    font-size:16px;
+    height:40px;
+    padding-left:10px;
+}
+.lastList{
+    border-top:2px solid gray;
+    align-items: center;
+    padding-top:5px;
+    margin-top:5px;
+}
+.dashBoardList li:hover{
+    background-color: #F0F2F5;
+}

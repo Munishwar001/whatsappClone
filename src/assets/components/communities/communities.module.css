@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFFFFF;
+}
+.heading{
+    margin-left:10px;
+}
+.logo{
+    height:48px;
+    width:48px;
+    margin-left:10px;
+    background-color: #00A884;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.newCommunities{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size:15px;
+    font-weight: 300;    
+}
+.space{
+    height:15px;
+    margin-top:8px;
+    background-color: #F0F2F5;
+
+}

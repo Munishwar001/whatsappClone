@@ -1,0 +1,33 @@
+.container {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid #f0f2f5;
+}
+
+.name {
+    margin: 0px ;
+
+}
+
+.content {
+  margin: 0%;
+    color: #605775;
+    overflow: hidden;
+
+}
+
+.container img {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+}
+
+.container:hover {
+    background-color: #F0F2F5;
+}
+.otherData{
+    margin:0%;
+    padding: 0%;
+}
