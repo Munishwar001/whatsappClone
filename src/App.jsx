@@ -1,16 +1,16 @@
-import { useState , useContext , createContext } from 'react'
+import { useState , useContext , createContext, useEffect } from 'react'
 import Nav from './assets/components/nav/navbar'
 import app from './App.module.css'
 import ChatStructure from './assets/components/chatColumn/chatstructure'
 import ChatWindowStructure from './assets/components/chatBox/chatWindowStructure'
-
+import { useNavigate } from 'react-router-dom'
 const ActivePageContext = createContext();
 
 function App() {
   const [selectedChat, setSelectedChat] = useState(null);
   const [active, setActive] = useState("chats");
   console.log(active);
-
+  
   return (
     <div className={app.container}>
       <ActivePageContext.Provider value={setActive}>
