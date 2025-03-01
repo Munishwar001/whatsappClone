@@ -17,17 +17,17 @@ export default function HandleRouter() {
             }).then((data) => {
                 console.log(data)
                 if (data.status == 200) {
-                    console.log("1234567890qwertyuio")
                     setIsLogin(true);
                     navigate("/app")
 
                 }
                 else {
-                    navigate("/")
                     setIsLogin(false);    
+                    navigate("/login")
                 }
             })
                 .catch((err) => {
+                    navigate("/")
                     console.log(err);
                 })
         }

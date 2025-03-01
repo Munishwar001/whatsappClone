@@ -36,8 +36,6 @@ const Signup = () => {
         .then((data)=>data.json())
         .then((data)=>{  
                 navigate("/login");
-                
-        
             console.log(data);
             console.log("Signup Successful!", { name, email, password });
             alert("Signup Successful!"); 
@@ -74,7 +72,8 @@ const Signup = () => {
                 <button type="submit" className={styles.button}>
                     Signup
                 </button>
-            </form>
+            </form> 
+            
         </div>
     );
 };

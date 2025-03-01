@@ -11,13 +11,21 @@ export default function ChatWindow({ selectedChat }) {
  
                 <div className={styles.msgBox}>
 
-                    {selectedChat.messages.map((e) => {
+                    {/* {selectedChat.messages.map((e) => {
                         return (
                             <p className={e.sender == "Me" ? styles.myMessage : styles.otherMessage}>
                                 {e.text}
                             </p>
                         );
-                    })}
+                    })} */}
+                    <p className="ME">
+                        hello 
+                    </p>
+
+                    <p className="sender">
+                        hello
+                    </p>
+
                 </div>
                 <footer className={styles.sendBox}>
                     <span style={{ marginLeft: "40px" }}>
