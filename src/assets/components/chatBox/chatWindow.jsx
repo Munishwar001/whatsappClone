@@ -18,11 +18,11 @@ export default function ChatWindow({ selectedChat }) {
                             </p>
                         );
                     })} */}
-                    <p className="ME">
+                    <p className={styles.myMessage}>
                         hello 
                     </p>
 
-                    <p className="sender">
+                    <p className={styles.otherMessage}>
                         hello
                     </p>
 

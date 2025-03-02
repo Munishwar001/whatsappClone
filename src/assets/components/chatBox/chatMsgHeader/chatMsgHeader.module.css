@@ -1,6 +1,7 @@
 .container{
-    width:925px;
+    width:1073px;
     align-items: center;
+    background-color: #F0F2F5;
 }
 .header{
     background-color: #F0F2F5; 
@@ -8,7 +9,7 @@
     align-items:center;
     justify-content:space-between; 
     height:62px; 
-    width:940px;
+    width:1050px;
 }
 .icons{
     display: flex;

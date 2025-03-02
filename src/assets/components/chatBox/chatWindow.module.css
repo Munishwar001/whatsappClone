@@ -15,22 +15,22 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 935px;
+    width: 1065px;
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding: 10px;
-    height: 520px;
+    height: 585px;
     overflow-y: auto;  
 }
 
 .sendBox {
     height: 62px;
-    width: 940px;
+    width: 1065px;
     background-color: #F0F2F5;
     display: flex;
     /* justify-content: space-between; */
-    gap: 50px;
+    gap: 70px;
     /* background-color: red; */
 }
 
