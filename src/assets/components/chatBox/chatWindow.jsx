@@ -1,9 +1,11 @@
 import styles from "./chatWindow.module.css";
 import ChatMsgHeader from "./chatMsgHeader/chatMsgHeader";
-import { useState , useEffect} from "react";
+import EmojiPicker from "emoji-picker-react";
+import { useState, useEffect } from "react";
 export default function ChatWindow({ selectedChat }) {
   const [focus, setFocus] = useState(false);
   const [message, setMessage] = useState("");
+  const [emoji , setEmoji] = useState(false);
   const [messages, setMessages] = useState(selectedChat.messages || []);
 
   const fetchMessages = async () => {
@@ -71,7 +73,9 @@ export default function ChatWindow({ selectedChat }) {
       console.error("Error sending message:", error);
     }
   };
-
+  const addEmoji = (emojid) => {
+    setMessage((prevMessage) => prevMessage + emojid.emoji);
+  };
   return (
     <>
       <div className={styles.container}>
@@ -91,7 +95,11 @@ export default function ChatWindow({ selectedChat }) {
             </p>
           ))}
         </div>
+
         <footer className={styles.sendBox}>
+          <div className={styles.picker} style={{display:emoji?"block":"none"}}>
+            <EmojiPicker onEmojiClick={addEmoji}/>
+          </div>
           <span style={{ marginLeft: "40px" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +112,7 @@ export default function ChatWindow({ selectedChat }) {
             </svg>
           </span>
           <div className={styles.msg}>
-            <span>
+            <span onClick={()=>{setEmoji(!emoji)}}>
               <svg
                 viewBox="0 0 24 24"
                 height="24"
@@ -131,6 +139,7 @@ export default function ChatWindow({ selectedChat }) {
             </span>
             <input
               type="text"
+              value={message}
               onChange={(e) => {
                 setFocus(true);
                 setMessage(e.target.value);

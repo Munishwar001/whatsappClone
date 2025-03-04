@@ -4,9 +4,11 @@ import app from './App.module.css'
 import ChatStructure from './assets/components/chatColumn/chatstructure'
 import ChatWindowStructure from './assets/components/chatBox/chatWindowStructure'
 import { useNavigate } from 'react-router-dom'
+import {io} from "socket.io-client"
 const ActivePageContext = createContext();
 
 function App() {
+
   const [selectedChat, setSelectedChat] = useState(null);
   const [active, setActive] = useState("chats");
   console.log(active);
