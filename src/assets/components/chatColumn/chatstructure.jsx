@@ -186,27 +186,31 @@ import { useState, useContext, createContext } from 'react';
     let filteredData = chats.filter(item => item.name.toLowerCase().includes(searchItem.toLowerCase()));
      console.log(chats);
    return (
-      <div className={styles.joiner}>  
-         {prop.activePage === "chats" && <Header  setSearchItem={setSearchItem}/>}
-         {prop.activePage === "chats" && (
-            <div className={styles.chats}>
-               {/* {filteredData.map((chat, index) => (
+     <div className={styles.joiner}>
+       {prop.activePage === "chats" && <Header setSearchItem={setSearchItem} />}
+       {prop.activePage === "chats" && (
+         <div className={styles.chats}>
+           {/* {filteredData.map((chat, index) => (
                   <Chat key={index} name={chat.name} message={chat.message} dp={chat.dp} messages={chat.messages} setSelectedChat={prop.setSelectedChat} />
                ))} */}
 
-               {filteredData.map((chat, index) => (
-                  <Chat key={index} name={chat.name} setSelectedChat={prop.setSelectedChat} />
-               ))}
-            </div>
-         )} 
-         {prop.activePage === "status" && <Status/>}
-         {prop.activePage === "channels" && <Channel />}
-         {prop.activePage === "communities" && <Communities/>}
-         {prop.activePage === "profile" && <Profile />}
-         {prop.activePage === "setting" && <SettingsPage />}
-
-
-      </div>
-   )
+           {filteredData.map((chat, index) => (
+             <Chat
+               key={index}
+               name={chat.name}
+               messages={chat.messages}
+               id={chat._id}
+               setSelectedChat={prop.setSelectedChat}
+             />
+           ))}
+         </div>
+       )}
+       {prop.activePage === "status" && <Status />}
+       {prop.activePage === "channels" && <Channel />}
+       {prop.activePage === "communities" && <Communities />}
+       {prop.activePage === "profile" && <Profile />}
+       {prop.activePage === "setting" && <SettingsPage />}
+     </div>
+   );
 } 
 export default ChatStructure ;
