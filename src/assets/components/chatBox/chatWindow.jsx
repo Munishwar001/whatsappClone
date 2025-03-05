@@ -2,12 +2,13 @@ import styles from "./chatWindow.module.css";
 import ChatMsgHeader from "./chatMsgHeader/chatMsgHeader";
 import EmojiPicker from "emoji-picker-react";
 import { useState, useEffect } from "react";
+import Socket from '../socket';
 export default function ChatWindow({ selectedChat }) {
   const [focus, setFocus] = useState(false);
   const [message, setMessage] = useState("");
   const [emoji , setEmoji] = useState(false);
   const [messages, setMessages] = useState(selectedChat.messages || []);
-
+  const [loading, setLoading] = useState(false);
   const fetchMessages = async () => {
     try {
       const response = await fetch(
@@ -31,14 +32,15 @@ export default function ChatWindow({ selectedChat }) {
       console.error("Error:", error);
     }
   };
-
+  
   // Fetch messages when chat is selected
   useEffect(() => {
     if (selectedChat) {
       fetchMessages();
     }
   }, [selectedChat]);
-
+  
+  console.log("loggedUser",selectedChat.loggedUser);
   const handleSend = async () => {
     if (message.trim() === "") return;
 
@@ -48,27 +50,14 @@ export default function ChatWindow({ selectedChat }) {
       selectedChat.id,
       selectedChat.messages
     );
-    alert("request sended");
     try {
-      const response = await fetch("http://localhost:8000/send-message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          receiver: selectedChat.id, // ID of the chat recipient
-          message: message,
-        }),
-        credentials: "include",
+      Socket.emit("sendMessage", {
+        sender:selectedChat.loggedUser,
+        receiver: selectedChat.id,
+        message,
       });
+      setMessage(""); 
 
-      if (response.ok) {
-        // Append the new message to local state
-        setMessages([...messages, { sender: "Me", text: message }]);
-        setMessage(""); // Clear input field
-      } else {
-        console.error("Error sending message:", await response.json());
-      }
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -76,6 +65,19 @@ export default function ChatWindow({ selectedChat }) {
   const addEmoji = (emojid) => {
     setMessage((prevMessage) => prevMessage + emojid.emoji);
   };
+  useEffect(() => {
+    const receiveMessage = (message) => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: "Other", text: message },
+      ]);
+    };
+
+    Socket.on("receiveMessage", receiveMessage);
+    return () => {
+      Socket.off("receiveMessage", receiveMessage); // Cleanup listener
+    };
+  }, []);
   return (
     <>
       <div className={styles.container}>
@@ -169,7 +171,9 @@ export default function ChatWindow({ selectedChat }) {
                 style={{ display: focus ? "block" : "none" }}
                 onClick={() => {
                   setFocus(false);
-                  handleSend();
+                  handleSend(); 
+                  setLoading;(!loading);
+                 fetchMessages();
                 }}
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
