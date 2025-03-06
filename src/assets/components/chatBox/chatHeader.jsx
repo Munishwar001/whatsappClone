@@ -13,7 +13,7 @@ export default function ChatHeader({ selectedChat}) {
         <div>
             {/* <h2>Chat with {selectedChat.name}</h2> {/* Show the selected user's name */}
             {/* <p>Start your conversation here...</p> */} 
-            <ChatWindow selectedChat={selectedChat} />
+            <ChatWindow selectedChat={selectedChat}  />
         </div>
     );
 }

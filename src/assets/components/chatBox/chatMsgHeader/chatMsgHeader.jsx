@@ -3,24 +3,63 @@ export default function ChatMsgHeader({ selectedChat }) {
     let a = selectedChat;
     
     return (
-        <div className={styles.container}>
-            <div className={styles.header}> 
-                <div className={styles.details}>
-                    <img src="data:image/jpeg;base64,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" alt="Profile" />
-                <p>{selectedChat.name || "Unknown"}</p> 
-                </div>
-                <div className={styles.icons}>
-                    <span>
-                        <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet"  fill="none"><title>video-call</title><path d="M3.27096 7.31042C3 7.82381 3 8.49587 3 9.84V14.16C3 15.5041 3 16.1762 3.27096 16.6896C3.5093 17.1412 3.88961 17.5083 4.35738 17.7384C4.88916 18 5.58531 18 6.9776 18H13.1097C14.502 18 15.1982 18 15.7299 17.7384C16.1977 17.5083 16.578 17.1412 16.8164 16.6896C17.0873 16.1762 17.0873 15.5041 17.0873 14.16V9.84C17.0873 8.49587 17.0873 7.82381 16.8164 7.31042C16.578 6.85883 16.1977 6.49168 15.7299 6.26158C15.1982 6 14.502 6 13.1097 6H6.9776C5.58531 6 4.88916 6 4.35738 6.26158C3.88961 6.49168 3.5093 6.85883 3.27096 7.31042Z" fill="currentColor"></path><path d="M18.7308 9.60844C18.5601 9.75994 18.4629 9.97355 18.4629 10.1974V13.8026C18.4629 14.0264 18.5601 14.2401 18.7308 14.3916L20.9567 16.3669C21.4879 16.8384 22.3462 16.4746 22.3462 15.778V8.22203C22.3462 7.52542 21.4879 7.16163 20.9567 7.63306L18.7308 9.60844Z" fill="currentColor"></path></svg>
-                    </span>
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" /></svg>
-                    </span>
-                    <span>
-                        <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet"  version="1.1" x="0px" y="0px" enableBackground="new 0 0 24 24"><title>menu</title><path fill="currentColor" d="M12,7c1.104,0,2-0.896,2-2c0-1.105-0.895-2-2-2c-1.104,0-2,0.894-2,2 C10,6.105,10.895,7,12,7z M12,9c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,9.895,13.104,9,12,9z M12,15 c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,15.894,13.104,15,12,15z"></path></svg>
-                    </span>
-                </div>
-            </div>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.details}>
+            <img src={selectedChat.profilePic || "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"} alt="Profile" />
+            <p>{selectedChat.name || "Unknown"}</p>
+          </div>
+          <div className={styles.icons}>
+            <span>
+              <svg
+                viewBox="0 0 24 24"
+                height="24"
+                width="24"
+                preserveAspectRatio="xMidYMid meet"
+                fill="none"
+              >
+                <title>video-call</title>
+                <path
+                  d="M3.27096 7.31042C3 7.82381 3 8.49587 3 9.84V14.16C3 15.5041 3 16.1762 3.27096 16.6896C3.5093 17.1412 3.88961 17.5083 4.35738 17.7384C4.88916 18 5.58531 18 6.9776 18H13.1097C14.502 18 15.1982 18 15.7299 17.7384C16.1977 17.5083 16.578 17.1412 16.8164 16.6896C17.0873 16.1762 17.0873 15.5041 17.0873 14.16V9.84C17.0873 8.49587 17.0873 7.82381 16.8164 7.31042C16.578 6.85883 16.1977 6.49168 15.7299 6.26158C15.1982 6 14.502 6 13.1097 6H6.9776C5.58531 6 4.88916 6 4.35738 6.26158C3.88961 6.49168 3.5093 6.85883 3.27096 7.31042Z"
+                  fill="currentColor"
+                ></path>
+                <path
+                  d="M18.7308 9.60844C18.5601 9.75994 18.4629 9.97355 18.4629 10.1974V13.8026C18.4629 14.0264 18.5601 14.2401 18.7308 14.3916L20.9567 16.3669C21.4879 16.8384 22.3462 16.4746 22.3462 15.778V8.22203C22.3462 7.52542 21.4879 7.16163 20.9567 7.63306L18.7308 9.60844Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </span>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#5f6368"
+              >
+                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+              </svg>
+            </span>
+            <span>
+              <svg
+                viewBox="0 0 24 24"
+                height="24"
+                width="24"
+                preserveAspectRatio="xMidYMid meet"
+                version="1.1"
+                x="0px"
+                y="0px"
+                enableBackground="new 0 0 24 24"
+              >
+                <title>menu</title>
+                <path
+                  fill="currentColor"
+                  d="M12,7c1.104,0,2-0.896,2-2c0-1.105-0.895-2-2-2c-1.104,0-2,0.894-2,2 C10,6.105,10.895,7,12,7z M12,9c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,9.895,13.104,9,12,9z M12,15 c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,15.894,13.104,15,12,15z"
+                ></path>
+              </svg>
+            </span>
+          </div>
         </div>
-    )
+      </div>
+    );
 }

@@ -35,11 +35,14 @@ export default function ChatWindow({ selectedChat }) {
   
   // Fetch messages when chat is selected
   useEffect(() => {
-    if (selectedChat) {
+
       fetchMessages();
-    }
-  }, [selectedChat]);
-  
+  },[]);
+
+ useEffect(() => {
+   fetchMessages();
+ }, [selectedChat]);
+
   console.log("loggedUser",selectedChat.loggedUser);
   const handleSend = async () => {
     if (message.trim() === "") return;

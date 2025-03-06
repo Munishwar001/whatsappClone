@@ -16,6 +16,8 @@ import { useState, useContext, createContext } from 'react';
     const [searchItem, setSearchItem] = useState("");
     const [chats, setChats] = useState([]);
     const [loggedUser , setLoggedUser]= useState("");
+    const [loggedUserdata , setLoggedUserdata]= useState("");
+
     // Fetch chats from server
     useEffect(() => {
        const fetchChats = async () => {
@@ -35,6 +37,7 @@ import { useState, useContext, createContext } from 'react';
              const data = await response.json();
              setChats(data.chats);
              setLoggedUser(data.loggedUser.id);
+             setLoggedUserdata(data.loggedUser);
           } catch (error) {
              console.error("Error fetching chat data:", error);
           }
@@ -53,17 +56,15 @@ import { useState, useContext, createContext } from 'react';
        {prop.activePage === "chats" && <Header setSearchItem={setSearchItem} />}
        {prop.activePage === "chats" && (
          <div className={styles.chats}>
-           {/* {filteredData.map((chat, index) => (
-                  <Chat key={index} name={chat.name} message={chat.message} dp={chat.dp} messages={chat.messages} setSelectedChat={prop.setSelectedChat} />
-               ))} */}
-
            {filteredData.map((chat, index) => (
              <Chat
                key={index}
                name={chat.name}
                messages={chat.messages}
-               id={chat._id} 
+               id={chat._id}
                loggedUser={loggedUser}
+               loggedUserdata={loggedUserdata}
+               profilePic={chat.dp}
                setSelectedChat={prop.setSelectedChat}
              />
            ))}
@@ -72,7 +73,9 @@ import { useState, useContext, createContext } from 'react';
        {prop.activePage === "status" && <Status />}
        {prop.activePage === "channels" && <Channel />}
        {prop.activePage === "communities" && <Communities />}
-       {prop.activePage === "profile" && <Profile />}
+       {prop.activePage === "profile" && (
+         <Profile loggedUserdata={prop.loggedUserdata} />
+       )}
        {prop.activePage === "setting" && <SettingsPage />}
      </div>
    );

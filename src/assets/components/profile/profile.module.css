@@ -62,3 +62,17 @@
     color: #666;
     margin-top: 5px;
 }
+.uploadBtn{
+    margin: 10px 10px;
+    height:30px;
+    width:150px;
+    font-weight: 700;
+    background-color: #017561;
+    border:none;
+    outline: none;
+    color:white;
+    border-radius:10px;
+}
+.img{
+    display: none;
+}
