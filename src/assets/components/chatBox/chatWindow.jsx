@@ -2,20 +2,29 @@ import styles from "./chatWindow.module.css";
 import ChatMsgHeader from "./chatMsgHeader/chatMsgHeader";
 import EmojiPicker from "emoji-picker-react";
 import { useState, useEffect } from "react";
-import Socket from '../socket';
+import Socket from "../socket";
 export default function ChatWindow({ selectedChat }) {
   const [focus, setFocus] = useState(false);
   const [message, setMessage] = useState("");
-  const [emoji , setEmoji] = useState(false);
+  const [emoji, setEmoji] = useState(false);
   const [messages, setMessages] = useState(selectedChat.messages || []);
-  const [loading, setLoading] = useState(false);
+  const [sendingImg, setSendingImg] = useState(null);
+  const [sendImgToogle, setSendImgToogle] = useState(false);
+  const [sendingImgPreview , setSendingImgPreview] = useState(null);
+  const[imgUrl , setImageUrl] = useState("");
+
+  const sendBox = (e) => {
+    const file = e.target.files[0];
+    setSendingImg(e.target.files[0]);
+    setSendingImgPreview(URL.createObjectURL(file));
+  };
   const fetchMessages = async () => {
     try {
       const response = await fetch(
         `http://localhost:8000/messages/${selectedChat.id}`,
         {
           method: "GET",
-          credentials: "include", // Include authentication token
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -32,42 +41,74 @@ export default function ChatWindow({ selectedChat }) {
       console.error("Error:", error);
     }
   };
-  
+
   // Fetch messages when chat is selected
+
   useEffect(() => {
+    fetchMessages();
+  }, [ ,selectedChat]);
 
-      fetchMessages();
-  },[]);
-
- useEffect(() => {
-   fetchMessages();
- }, [selectedChat]);
-
-  console.log("loggedUser",selectedChat.loggedUser);
-  const handleSend = async () => {
-    if (message.trim() === "") return;
-
+  console.log("loggedUser", selectedChat.loggedUser);
+  const handleSend = async (text) => {
+    if (text.trim() === "" || text ==null ) {
+      alert("Please Type Something or Select Any Image using plus Sign 🙏");
+      return;
+    }
     console.log(
-      "selected chat data",
       selectedChat.name,
       selectedChat.id,
       selectedChat.messages
     );
-    try {
+    try { 
       Socket.emit("sendMessage", {
-        sender:selectedChat.loggedUser,
+        sender: selectedChat.loggedUser,
         receiver: selectedChat.id,
-        message,
+         message : text, 
       });
-      setMessage(""); 
-
+      setMessage("");
+      setSendingImg(null);
+      setSendingImgPreview(null);
+      setSendImgToogle(false);
+      fetchMessages();
     } catch (error) {
       console.error("Error sending message:", error);
     }
   };
+
+    const handleSendImg = async () => {
+      if (!sendingImg) {
+      alert("Please select a file first!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("MsgPic", sendingImg);
+
+    try {
+      const response = await fetch("http://localhost:8000/upload/img",{
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      });
+
+      const data = await response.json();    
+      if (response.ok) {         
+        alert("Profile picture uploaded successfully!");
+         setImageUrl(data.imageUrl)
+        console.log(data.imageUrl);
+        handleSend(data.imageUrl);
+      } else {
+        alert("Upload failed. Try again!");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+    }
+
   const addEmoji = (emojid) => {
     setMessage((prevMessage) => prevMessage + emojid.emoji);
   };
+  
   useEffect(() => {
     const receiveMessage = (message) => {
       setMessages((prevMessages) => [
@@ -80,44 +121,80 @@ export default function ChatWindow({ selectedChat }) {
     return () => {
       Socket.off("receiveMessage", receiveMessage); // Cleanup listener
     };
-  }, []);
+  }, [Socket]);
   return (
     <>
       <div className={styles.container}>
         <ChatMsgHeader selectedChat={selectedChat} />
 
         <div className={styles.msgBox}>
-          {messages.map((msg) => (
-            <p
-              key={msg._id}
-              className={
-                msg.sender._id === selectedChat.id
-                  ? styles.otherMessage
-                  : styles.myMessage
-              }
-            >
-              {msg.message}
-            </p>
-          ))}
-        </div>
+  {messages.map((msg) => {
+    const isImageUrl = /\.(jpeg|jpg|gif|png|webp|svg)$/i.test(msg.message);
+    
+    return (
+      <p
+        key={msg._id}
+        className={msg.sender._id === selectedChat.id ? styles.otherMessage : styles.myMessage}
+      >
+        {isImageUrl ? (
+          <img
+            src={msg.message}
+            alt="Sent image"
+            className={styles.sendingImg}
+          />
+        ) : (
+          msg.message
+        )}
+      </p>
+    );
+  })}
+</div>
+
 
         <footer className={styles.sendBox}>
-          <div className={styles.picker} style={{display:emoji?"block":"none"}}>
-            <EmojiPicker onEmojiClick={addEmoji}/>
+          <div className={styles.picker} style={{ display: emoji ? "block" : "none" }}>
+            <EmojiPicker onEmojiClick={addEmoji} />
           </div>
-          <span style={{ marginLeft: "40px" }}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#5f6368"
-            >
-              <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
-            </svg>
+  
+          <div className={styles.sendingImgDiv} style={{ display :sendImgToogle?"block":"none"}}>
+            <div>
+              <img src={sendingImgPreview} alt="" className={styles.sendingImg} />
+              <span className={styles.sendSvg} onClick={()=> handleSendImg()}>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#FFFFFF">
+                  <path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <input
+            type="file"
+            id="msgFile"
+            className={styles.msgFile}
+            onChange={sendBox}
+          />
+          <span style={{ marginLeft: "40px" }} onClick={() => setSendImgToogle((prev) => !prev)}>
+            <label htmlFor="msgFile" className={styles.msgLabel}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#5f6368"
+              >
+                <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+              </svg>
+            </label>
           </span>
           <div className={styles.msg}>
-            <span onClick={()=>{setEmoji(!emoji)}}>
+            <span
+              onClick={() => {
+                setEmoji(!emoji);
+                setSendImgToogle(false);
+              }}
+            >
               <svg
                 viewBox="0 0 24 24"
                 height="24"
@@ -174,9 +251,8 @@ export default function ChatWindow({ selectedChat }) {
                 style={{ display: focus ? "block" : "none" }}
                 onClick={() => {
                   setFocus(false);
-                  handleSend(); 
-                  setLoading;(!loading);
-                 fetchMessages();
+                  handleSend(message);
+                  fetchMessages();
                 }}
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"

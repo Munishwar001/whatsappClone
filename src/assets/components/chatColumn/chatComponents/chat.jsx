@@ -27,7 +27,7 @@ export default function Chat({
       <div className={style.chatlistContent}>
         <h3>{name}</h3>
         {/* <p>{message}</p> */}
-        <p>hello {loggedUser} !</p>
+        <p>hello {name} !</p>
       </div>
     </div>
   );

@@ -1,17 +1,17 @@
 import React from "react";
 
-import styles from "./Profile.module.css"; // Importing CSS Module
+import styles from "./Profile.module.css"; 
 import { useState } from "react";
 const Profile = ({  loggedUserdata  }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [image, setImage] = useState( loggedUserdata.dp ||"");
   const [preview , setPreview] = useState(null);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(e.target.files[0]);
     setPreview(URL.createObjectURL(file));
   };
-  //  console.log("wertyuio9iu6y5trew",loggedUserdata);
    
   const handleUpload = async () => {
     if (!selectedFile) {
@@ -34,7 +34,7 @@ const Profile = ({  loggedUserdata  }) => {
         console.log(data.dp);
         setPreview(null);
         setImage(data.dp);
-      } else {
+      } else {0
         alert("Upload failed. Try again!");
         console.log(data.msg);
       }
