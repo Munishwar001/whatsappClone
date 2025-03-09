@@ -34,3 +34,9 @@
 .details p{
     color:#112243;
 }
+.Active p{
+ margin: 10% 0 0 0;
+}
+.status{
+    color:#5CB338 
+}

@@ -7,7 +7,10 @@ export default function ChatMsgHeader({ selectedChat }) {
         <div className={styles.header}>
           <div className={styles.details}>
             <img src={selectedChat.profilePic || "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"} alt="Profile" />
-            <p>{selectedChat.name || "Unknown"}</p>
+            <div className={styles.Active}><p>{selectedChat.name || "Unknown"}</p> 
+                  <p className={styles.status} style={{color : selectedChat.active ? "green" : "red"}} >
+                    {selectedChat.active ? "online" : "offline"}</p>
+            </div> 
           </div>
           <div className={styles.icons}>
             <span>

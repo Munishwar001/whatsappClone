@@ -5,7 +5,9 @@ export default function Chat({
   id,
   loggedUser,
   profilePic,
+  active,
   setSelectedChat,
+
 }) {
   //  console.log(messages);
   console.log(profilePic);
@@ -13,7 +15,7 @@ export default function Chat({
     <div
       className={style.chatlist}
       onClick={() =>
-        setSelectedChat({ name, messages, id, profilePic , loggedUser })
+        setSelectedChat({ name, messages, id, profilePic ,active ,  loggedUser })
       }
     >
       <img
@@ -26,8 +28,7 @@ export default function Chat({
       />
       <div className={style.chatlistContent}>
         <h3>{name}</h3>
-        {/* <p>{message}</p> */}
-        <p>hello {name} !</p>
+        <p>Click here to open chat !</p>
       </div>
     </div>
   );

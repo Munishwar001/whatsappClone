@@ -46,7 +46,7 @@ export default function ChatWindow({ selectedChat }) {
 
   useEffect(() => {
     fetchMessages();
-  }, [ ,selectedChat]);
+  }, [selectedChat]);
 
   console.log("loggedUser", selectedChat.loggedUser);
   const handleSend = async (text) => {

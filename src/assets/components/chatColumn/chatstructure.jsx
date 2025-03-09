@@ -20,34 +20,35 @@ import { useState, useContext, createContext } from 'react';
 
     // Fetch chats from server
     useEffect(() => {
-       const fetchChats = async () => {
-          try {
-             const response = await fetch("http://localhost:8000/chats", {
-                method: "GET",
-                credentials: "include", 
-                headers: {
-                   "Content-Type": "application/json",
-                }
-             });
+   const fetchChats = async () => {
+      try {
+         const response = await fetch("http://localhost:8000/chats", {
+            method: "GET",
+            credentials: "include", 
+            headers: { "Content-Type": "application/json" }
+         });
 
-             if (!response.ok) {
-                throw new Error("Failed to fetch chats");
-             }
+         if (!response.ok) throw new Error("Failed to fetch chats");
 
-             const data = await response.json();
-             setChats(data.chats);
-             setLoggedUser(data.loggedUser.id);
-             setLoggedUserdata(data.loggedUser);
-          } catch (error) {
-             console.error("Error fetching chat data:", error);
-          }
-       };
+         const data = await response.json();
+         setChats(data.chats);
+         setLoggedUser(data.loggedUser.id);
+         setLoggedUserdata(data.loggedUser);
 
-       fetchChats();
+         // Emit event AFTER the state updates
+         if (data.loggedUser.id) {
+            Socket.emit("register", data.loggedUser.id); 
+            console.log("LoggedUserId:", data.loggedUser.id); 
+         }
+      } catch (error) {
+         console.error("Error fetching chat data:", error);
+      }
+   };
 
-       Socket.emit("register", loggedUser);
-    }, []); 
-             console.log("abcdef", loggedUser);
+   fetchChats();
+}, []); 
+ 
+            //  console.log("abcdef", loggedUser);
     console.log(searchItem);
     let filteredData = chats.filter(item => item.name.toLowerCase().includes(searchItem.toLowerCase()));
     console.log(chats); 
@@ -65,6 +66,7 @@ import { useState, useContext, createContext } from 'react';
                loggedUser={loggedUser}
                loggedUserdata={loggedUserdata}
                profilePic={chat.dp}
+               active={chat.active}
                setSelectedChat={prop.setSelectedChat}
              />
            ))}
