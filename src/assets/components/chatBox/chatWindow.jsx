@@ -7,7 +7,7 @@ export default function ChatWindow({ selectedChat }) {
   const [focus, setFocus] = useState(false);
   const [message, setMessage] = useState("");
   const [emoji, setEmoji] = useState(false);
-  const [messages, setMessages] = useState(selectedChat.messages || []);
+  const [messages, setMessages] = useState([]);
   const [sendingImg, setSendingImg] = useState(null);
   const [sendImgToogle, setSendImgToogle] = useState(false);
   const [sendingImgPreview , setSendingImgPreview] = useState(null);
@@ -57,7 +57,6 @@ export default function ChatWindow({ selectedChat }) {
     console.log(
       selectedChat.name,
       selectedChat.id,
-      selectedChat.messages
     );
     try { 
       Socket.emit("sendMessage", {

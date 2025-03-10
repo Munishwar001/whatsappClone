@@ -8,7 +8,6 @@ import Channel from '../channels/channel';
 import Communities from '../communities/communities';
 import SettingsPage from '../setting/setting'; 
 import { useEffect } from 'react';
-import {io} from 'socket.io-client';
 import { useState, useContext, createContext } from 'react'; 
  import Socket from '../socket';
  function ChatStructure(prop) {
@@ -17,7 +16,7 @@ import { useState, useContext, createContext } from 'react';
     const [chats, setChats] = useState([]);
     const [loggedUser , setLoggedUser]= useState("");
     const [loggedUserdata , setLoggedUserdata]= useState("");
-
+    const [onlineUser , setOnlineUser] = useState([])
     // Fetch chats from server
     useEffect(() => {
    const fetchChats = async () => {
@@ -40,15 +39,17 @@ import { useState, useContext, createContext } from 'react';
             Socket.emit("register", data.loggedUser.id); 
             console.log("LoggedUserId:", data.loggedUser.id); 
          }
+              Socket.on("online",(onlineUser)=>{
+                  setOnlineUser(onlineUser);
+                 })
       } catch (error) {
          console.error("Error fetching chat data:", error);
       }
    };
-
+  
    fetchChats();
 }, []); 
  
-            //  console.log("abcdef", loggedUser);
     console.log(searchItem);
     let filteredData = chats.filter(item => item.name.toLowerCase().includes(searchItem.toLowerCase()));
     console.log(chats); 
@@ -60,8 +61,8 @@ import { useState, useContext, createContext } from 'react';
            {filteredData.map((chat, index) => (
              <Chat
                key={index}
-               name={chat.name}
-               messages={chat.messages}
+               name={chat.name} 
+               onlineUser={onlineUser}
                id={chat._id}
                loggedUser={loggedUser}
                loggedUserdata={loggedUserdata}

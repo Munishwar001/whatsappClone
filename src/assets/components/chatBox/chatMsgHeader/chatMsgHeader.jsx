@@ -1,15 +1,16 @@
 import styles from "./chatMsgHeader.module.css"
+ import Socket from '../../socket';
 export default function ChatMsgHeader({ selectedChat }) {
-    let a = selectedChat;
-    
+    // let a = selectedChat;
+    console.log("online Users ih header",selectedChat.onlineUser);
     return (
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.details}>
             <img src={selectedChat.profilePic || "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"} alt="Profile" />
             <div className={styles.Active}><p>{selectedChat.name || "Unknown"}</p> 
-                  <p className={styles.status} style={{color : selectedChat.active ? "green" : "red"}} >
-                    {selectedChat.active ? "online" : "offline"}</p>
+                  <p className={styles.status} style={{color :selectedChat.onlineUser.includes(selectedChat.id) ? "green" : "red"}} >
+                    {selectedChat.onlineUser.includes(selectedChat.id)? "online" : "offline"}</p>
             </div> 
           </div>
           <div className={styles.icons}>

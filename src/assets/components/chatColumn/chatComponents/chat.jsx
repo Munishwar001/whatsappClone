@@ -1,7 +1,7 @@
 import style from './chat.module.css';
 export default function Chat({
   name,
-  messages,
+  onlineUser,
   id,
   loggedUser,
   profilePic,
@@ -15,7 +15,7 @@ export default function Chat({
     <div
       className={style.chatlist}
       onClick={() =>
-        setSelectedChat({ name, messages, id, profilePic ,active ,  loggedUser })
+        setSelectedChat({ name, id, onlineUser ,  profilePic ,active ,  loggedUser })
       }
     >
       <img
