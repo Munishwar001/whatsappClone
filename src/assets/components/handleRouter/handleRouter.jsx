@@ -5,7 +5,8 @@ import App from "../../../App";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotFoundPage from "../404PageNotFound/404PageNotFound";
-
+import OTPVerification from "../forgot password/forgotPassword"
+import ResetPassword from "../forgot password/reset-password"
 export default function HandleRouter() {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
@@ -40,6 +41,8 @@ export default function HandleRouter() {
       <Routes>
         <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
+        <Route path="/forgot-password" element={<OTPVerification/>} />
+        <Route path="/reset-password" element={<ResetPassword/>} />
         <Route
           path="/app"
           element={isLogin ? <App /> : <Login setIsLogin={setIsLogin} />}

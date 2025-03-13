@@ -67,7 +67,10 @@ const Login = ({ setIsLogin }) => {
           />
           <button type="submit" className={styles.button}>
             Login
-          </button>
+          </button> 
+          <Link to="/forgot-password" className={styles.forgotPassword}>
+            Forgot Password?
+          </Link>
         </form>
         <p className={styles.navigate}>
           Don't have an account ?
