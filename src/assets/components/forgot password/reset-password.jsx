@@ -2,12 +2,13 @@
 import React, { useState } from "react";
 import styles from "./reset-password.module.css";
   import { toast } from 'react-toastify';
+  import { useNavigate } from "react-router-dom";
 const ResetPassword = () => {
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
@@ -24,6 +25,7 @@ const ResetPassword = () => {
     if (res.ok) {
     setError("");
     toast.success("Password reset successfully!");  
+    navigate("/login");
     return ;
     } 
     setError("Invalid Information");

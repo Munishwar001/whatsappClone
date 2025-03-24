@@ -33,11 +33,13 @@ const Login = ({ setIsLogin }) => {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log(data);
-        // console.log("Login Successful!", { email, password });
+        if (data.success) {
         setIsLogin(true);
         navigate("/app");
-        alert("Login Successful!");
+        alert("Login Successful!"); }
+        else {
+          setError(data.msg);
+        }
       })
       .catch((error) => {
         alert("Please register correctly");

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./ForgotPassword.module.css"; // Import CSS Module
 import { useNavigate} from "react-router-dom";
+import { toast } from "react-toastify";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -15,10 +16,13 @@ const ForgotPassword = () => {
       credentials: 'include',
     });
     if(res.status=== 404){
+      toast.error("Email not found ");
       setMessage("Email not found ");
     }
     else
    { const data = await res.json();
+    toast.success("OTP has been sent to your Mail");
+    toast.update(`your OTP is ${data.otp} validate only for 5 min`);
     setMessage(data.message); 
     navigate("/reset-password");
   }
