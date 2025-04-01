@@ -7,7 +7,6 @@ import HandleRouter from './assets/components/handleRouter/handleRouter.jsx'
 import { BrowserRouter } from 'react-router-dom'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    {/* <App /> */}
     <HandleRouter />
     <ToastContainer position="top-right"
 autoClose={5000}

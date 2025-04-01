@@ -12,6 +12,16 @@ import {
 import styles from './setting.module.css';
 
 const SettingsPage = () => {
+    const handleLogout = async () => {
+            const res = await fetch("http://localhost:8000/logout", {
+              method: "get",
+              headers: { "Content-Type": "application/json" },
+                credentials: "include",
+            });
+        if (res.status == 200) {
+            window.location.href = "/";
+        }
+    }
     return (
         <div className={styles.settingsContainer}>
             <h2 className={styles.title}>Settings</h2>
@@ -39,7 +49,7 @@ const SettingsPage = () => {
 
             <div className={styles.logoutButton}>
                 <FaSignOutAlt className={styles.logoutIcon} />
-                <span>Log out</span>
+                <span onClick={handleLogout}>Log out</span>
             </div> 
             </div>
         </div>
