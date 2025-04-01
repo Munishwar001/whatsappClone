@@ -5,11 +5,10 @@ Welcome to the **WhatsApp Clone** project! This is a real-time chat application 
 ## 🚀 Features
 - **Real-time Messaging** using WebSockets
 - **User Authentication** (Sign Up / Login)
-- **Group Chats & Private Chats**
+- **Private Chats**
 - **Profile Management**
-- **Message Status Indicators** (Sent, Delivered, Read)
-- **Responsive UI** for desktop and mobile
-- **Emojis & Multimedia Support** (Images, Videos, Audio)
+- **User Status Indicators** (Online, Offline)
+- **Emojis & Multimedia Support** (Images)
 - **Notifications** for new messages
 
 ## 🛠️ Tech Stack
@@ -45,7 +44,7 @@ Ensure you have **Node.js**, **MongoDB**, and **npm** installed.
 2. **Install Dependencies:**
    ```sh
    cd server && npm install
-   cd ../client && npm install
+   cd whatappClone && npm install
    ```
 
 3. **Set Up Environment Variables:**
@@ -57,24 +56,24 @@ Ensure you have **Node.js**, **MongoDB**, and **npm** installed.
 
 4. **Start the Backend Server:**
    ```sh
-   cd server
-   npm start
+   cd Backend-whataapp-clone
+   node index.js
    ```
 
 5. **Start the Frontend:**
    ```sh
-   cd client
+   cd whatappClone
    npm start
    ```
 
 6. **Open the App:**
-   Visit `http://localhost:3000` in your browser.
+   Visit `http://localhost:5173` in your browser.
 
 ## 💡 Future Enhancements
 - **Voice & Video Calls**
 - **Message Reactions & Stickers**
 - **End-to-End Encryption**
-- **Dark Mode UI**
+- **Dark Mode UI*
 
 ## 🤝 Contributing
 Contributions are welcome! Feel free to fork the repo and submit a pull request.
